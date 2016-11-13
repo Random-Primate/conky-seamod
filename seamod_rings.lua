@@ -1,7 +1,7 @@
 --==============================================================================
 --                            seamod_rings.lua
 --
---  Date    : 2016/08/14
+--  Date    : 2016/11/13
 --  Author  : SeaJey, modified by JPvRiel
 --  Version : v0.2
 --  License : Distributed under the terms of GNU GPL version 2 or later
@@ -14,14 +14,13 @@
 
 require 'cairo'
 
-
 gauge = {
-    
+
 --====--
 -- Data here is loaded only once when included and is therefore static
 -- 'name' and 'arg' for simple conky objects with static arguments
--- 'conky_line' for complex, conditional and dynamic behaviour
--- 'conky_line' supercedes 'name' and 'arg' (in case both are present)
+-- 'conky_line' for complex, conditional and dynamic behavior
+-- 'conky_line' supersedes 'name' and 'arg' (in case both are present)
 --====--
 
 -- CPU rings
@@ -497,11 +496,43 @@ function go_gauge_rings(display, border)
         end
         draw_gauge_ring(display, data, value, border)
     end
-    
+
     for i in pairs(gauge) do
         load_gauge_rings(display, gauge[i])
     end
-    
+
+end
+
+
+-- other util functions
+
+function conky_nproc()
+  return io.popen('nproc'):read('*n')
+end
+
+function cpu_freq_list()
+  fl = {}
+  for i=1, conky_nproc() do
+    fl[i] = conky_parse('${freq ' .. i .. '}')
+  end
+  return fl
+end
+
+function conky_freq_min()
+  return math.min(unpack(cpu_freq_list()))
+end
+
+function conky_freq_max()
+  return math.max(unpack(cpu_freq_list()))
+end
+
+function conky_freq_avg()
+  fl = cpu_freq_list()
+  sum = 0
+  for i=1, #fl do
+    sum = sum + fl[i]
+  end
+  return sum / #fl
 end
 
 
@@ -511,7 +542,7 @@ function conky_main()
     if conky_window == nil then
         return
     end
-    
+
     local cs = cairo_xlib_surface_create(conky_window.display, conky_window.drawable, conky_window.visual, conky_window.width, conky_window.height)
     local display = cairo_create(cs)
 

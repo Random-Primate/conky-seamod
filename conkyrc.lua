@@ -1,79 +1,79 @@
 -----------------------------------------------------------------------------
---                               conkyrc_seamod
--- Date    : 2016/08/14
--- Author  : SeaJey, Maxiwell and JPvRiel
--- Conky   : >= 1.10
+-- conkyrc_seamod
+-- Date : 2016/11/13
+-- Author : SeaJey, Maxiwell and JPvRiel
+-- Conky : >= 1.10
 -- License : Distributed under the terms of GNU GPL version 2 or later
 -----------------------------------------------------------------------------
 
 conky.config = {
 
-	background = true,
-	update_interval = 1,
+  background = true,
+  update_interval = 1,
 
-	cpu_avg_samples = 2,
-	net_avg_samples = 2,
-	temperature_unit = 'celsius',
-        if_up_strictness = 'address',
+  cpu_avg_samples = 2,
+  net_avg_samples = 2,
+  temperature_unit = 'celsius',
+  if_up_strictness = 'address',
 
-	double_buffer = true,
-	no_buffers = true,
-	text_buffer_size = 2048,
+  double_buffer = true,
+  no_buffers = true,
+  text_buffer_size = 2048,
 
-       	own_window = true,
-        own_window_class = 'conky-semi',
-        --own_window_type = 'override',
-        --own_window_type = 'desktop',
-        own_window_type = 'dock',
-        own_window_hints = 'undecorated,sticky,skip_taskbar,skip_pager,below',
-        
-        own_window_colour = '#000000',
-        own_window_transparent = false,
-	own_window_argb_visual = true,
-	own_window_argb_value = 192,
+  own_window = true,
+  own_window_class = 'conky-semi',
+  --own_window_type = 'override',
+  --own_window_type = 'desktop',
+  own_window_type = 'dock',
+  own_window_hints = 'undecorated,sticky,skip_taskbar,skip_pager,below',
 
-        draw_shades = false,
-	draw_outline = false,
-	draw_borders = false,
-	draw_graph_borders = false,
-        
-	alignment = 'top_right',
-        gap_x = 80,
-	gap_y = 70,
-	minimum_width = 340, minimum_height = 600,
-	maximum_width = 360,
-        border_inner_margin = 0,
-	border_outer_margin = 20,
-        xinerama_head = 0,
+  own_window_colour = '#000000',
+  own_window_transparent = false,
+  own_window_argb_visual = true,
+  own_window_argb_value = 192,
 
-	override_utf8_locale = true,
-	use_xft = true,
-	font = 'Ubuntu:size=11',
-	xftalpha = 0.8,
-	uppercase = false,
-        
-        -- Defining colors
-	default_color = '#FFFFFF',
-        -- Shades of Gray
-	color1 = '#DDDDDD',
-	color2 = '#AAAAAA',
-	color3 = '#888888',
-        -- Orange
-	color4 = '#EF5A29',
-        -- Green
-	color5 = '#77B753',
+  draw_shades = false,
+  draw_outline = false,
+  draw_borders = false,
+  draw_graph_borders = false,
 
-        -- Loading lua script for drawning rings
-	lua_load = '~/.conky/seamod/seamod_rings.lua',
-	lua_draw_hook_post = 'main',
-        
+  alignment = 'top_right',
+  gap_x = 80,
+  gap_y = 70,
+  minimum_width = 340, minimum_height = 600,
+  maximum_width = 360,
+  border_inner_margin = 0,
+  border_outer_margin = 20,
+  xinerama_head = 0,
+
+  override_utf8_locale = true,
+  use_xft = true,
+  font = 'Ubuntu:size=11',
+  xftalpha = 0.8,
+  uppercase = false,
+
+  -- Defining colors
+  default_color = '#FFFFFF',
+  -- Shades of Gray
+  color1 = '#DDDDDD',
+  color2 = '#AAAAAA',
+  color3 = '#888888',
+  -- Orange
+  color4 = '#EF5A29',
+  -- Green
+  color5 = '#77B753',
+
+  -- Loading lua script for drawning rings
+  lua_load = '~/.conky/seamod/seamod_rings.lua',
+  lua_draw_hook_post = 'main'
+
 };
 
 conky.text = [[
 # Showing CPU Graph with TOP 5
-
 ${offset 180}${color1}${font Ubuntu:size=10:style=bold}Temp: ${alignr}${font Ubuntu:size=10:style=normal}${color2}${hwmon 2 temp 1} C
 ${offset 180}${color1}${font Ubuntu:size=10:style=bold}Fan: ${alignr}${font Ubuntu:size=10:style=normal}${color2}${hwmon 2 fan 1} RPM
+${offset 180}${color1}${font Ubuntu:size=10:style=bold}Freq: ${alignr}${font Ubuntu:size=10:style=normal}${color2}${lua freq_min} - ${lua freq_max} MHz
 ${offset 145}${cpugraph cpu0 30,200 666666 666666}
 ${voffset -32}
 ${offset 91}${font Ubuntu:size=11:style=bold}${color5}PROC
@@ -99,8 +99,8 @@ ${offset 110}${font Ubuntu:size=10:style=normal}${color3}${top_mem name 4}${alig
 ${offset 110}${font Ubuntu:size=10:style=normal}${color3}${top_mem name 5}${alignr}${top_mem mem_res 5}
 
 
-# Showing disk partitions: root, home and files
 
+# Showing disk partitions: root, home and files
 ${offset 180}${color1}${font Ubuntu:size=10:style=bold}Read: ${alignr}${font Ubuntu:size=10:style=normal}${color2}${diskio_read}
 ${offset 180}${color1}${font Ubuntu:size=10:style=bold}Write: ${alignr}${font Ubuntu:size=10:style=normal}${color2}${diskio_write}
 ${offset 145}${diskiograph 30,200 666666 666666}
@@ -148,8 +148,8 @@ ${offset 105}${font Ubuntu:size=11:style=bold}${color5}NET
 #### Modifications below HERE wont cause alignment problems with the gauges/rings ####
 # Extra info
 ${voffset 60}
-${offset 15}${font Ubuntu:size=11:style=normal}${color1}Entropy:${tab}${color3}${entropy_bar 5,140}  ${color3}${entropy_perc}% (${entropy_avail}/${entropy_poolsize})
-${offset 15}${font Ubuntu:size=11:style=normal}${color1}Battery:${tab}${color3}${battery_bar 5,140}  ${if_match ${battery_percent BAT0} <= 33}${color4}${else}${color3}${endif}${battery_short}${if_match ${battery_percent BAT0} != 100} (${battery_time})${endif}
+${offset 15}${font Ubuntu:size=11:style=normal}${color1}Entropy:${tab}${color3}${entropy_bar 5,140} ${color3}${entropy_perc}% (${entropy_avail}/${entropy_poolsize})
+${offset 15}${font Ubuntu:size=11:style=normal}${color1}Battery:${tab}${color3}${battery_bar 5,140} ${if_match ${battery_percent BAT0} <= 33}${color4}${else}${color3}${endif}${battery_short}${if_match ${battery_percent BAT0} != 100} (${battery_time})${endif}
 ${offset 15}${font Ubuntu:size=11:style=normal}${color1}Uptime:${tab}${tab}${color3}$uptime
 
 # Log feed
