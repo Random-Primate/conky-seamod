@@ -510,9 +510,12 @@ function conky_nproc()
   return io.popen('nproc'):read('*n')
 end
 
+-- provide a global var of nproc so that it is run only once, not every interval
+nproc = conky_nproc()
+
 function cpu_freq_list()
   fl = {}
-  for i=1, conky_nproc() do
+  for i=1, nproc do
     fl[i] = conky_parse('${freq ' .. i .. '}')
   end
   return fl

@@ -114,7 +114,7 @@ ${offset 110}${font Ubuntu:size=10:style=normal}${color2}${top_mem name 5}${alig
 
 
 # Network data (assumes wireless info). NET ring is mostly useless but looks pretty, main info is in the graphs
-#${if_up eth0}
+${if_up eth0}
 ${if_match "${addr eth0}" != "No Address"}\
 ${offset 180}${font Ubuntu:size=10:style=bold}${color1}Wired
 ${offset 180}${font Ubuntu:size=10:style=bold}${color1}IP: ${alignr}${font Ubuntu:size=10:style=normal}${color2}${addr eth0}
