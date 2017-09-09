@@ -302,9 +302,9 @@ gauge = {
 },
 -- Network rings
 {
-    --conky_line='${if_up eth0}${downspeedf eth0}${else}${if_up wlan0}{downspeedf wlan0}${endif}${endif}',
-    conky_line='${if_match "${addr eth0}" != "No Address"}${downspeedf eth0}${else}${if_match "${addr wlan0}" != "No Address"}${downspeedf wlan0}${endif}${endif}',
-    name='downspeedf',             arg='eth0',                  max_value=100,
+    --conky_line='${if_up enp0s31f6}${downspeedf enp0s31f6}${else}${if_up wlp3s0}{downspeedf wlp3s0}${endif}${endif}',
+    conky_line='${if_match "${addr enp0s31f6}" != "No Address"}${downspeedf enp0s31f6}${else}${if_match "${addr wlp3s0}" != "No Address"}${downspeedf wlp3s0}${endif}${endif}',
+    name='downspeedf',             arg='enp0s31f6',                  max_value=100,
     x=70,                          y=642,
     graph_radius=60,
     graph_thickness=8,
@@ -325,9 +325,9 @@ gauge = {
     caption_fg_colour=0xFFFFFF,    caption_fg_alpha=0.5,
 },
 {
-    --conky_line='${if_up eth0}${upspeedf eth0}${else}${if_up wlan0}${upspeedf wlan0}${endif}${endif}',
-    conky_line='${if_match "${addr eth0}" != "No Address"}${upspeedf eth0}${else}${if_match "${addr wlan0}" != "No Address"}${upspeedf wlan0}${endif}${endif}',
-    name='upspeedf',               arg='eth0',                  max_value=100,
+    --conky_line='${if_up enp0s31f6}${upspeedf enp0s31f6}${else}${if_up wlp3s0}${upspeedf wlp3s0}${endif}${endif}',
+    conky_line='${if_match "${addr enp0s31f6}" != "No Address"}${upspeedf enp0s31f6}${else}${if_match "${addr wlp3s0}" != "No Address"}${upspeedf wlp3s0}${endif}${endif}',
+    name='upspeedf',               arg='enp0s31f6',                  max_value=100,
     x=70,                          y=642,
     graph_radius=48,
     graph_thickness=8,
@@ -348,8 +348,8 @@ gauge = {
     caption_fg_colour=0xFFFFFF,    caption_fg_alpha=0.5,
 },
 {
-    conky_line='${if_match "${addr wlan0}" != "No Address"}${wireless_link_qual_perc wlan0}${else}0${endif}',
-    name='wireless_link_qual_perc', arg='wlan0',                max_value=100,
+    conky_line='${if_match "${addr wlp3s0}" != "No Address"}${wireless_link_qual_perc wlp3s0}${else}0${endif}',
+    name='wireless_link_qual_perc', arg='wlp3s0',                max_value=100,
     x=70,                          y=642,
     graph_radius=30,
     graph_thickness=8,

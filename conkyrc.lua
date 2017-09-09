@@ -30,7 +30,7 @@ conky.config = {
   own_window_colour = '#000000',
   own_window_transparent = false,
   own_window_argb_visual = true,
-  own_window_argb_value = 192,
+  own_window_argb_value = 0,
 
   draw_shades = false,
   draw_outline = false,
@@ -38,10 +38,10 @@ conky.config = {
   draw_graph_borders = false,
 
   alignment = 'top_right',
-  gap_x = 80,
+  gap_x = 0,
   gap_y = 70,
   minimum_width = 340, minimum_height = 600,
-  maximum_width = 360,
+  maximum_width = 390,
   border_inner_margin = 0,
   border_outer_margin = 20,
   xinerama_head = 0,
@@ -114,24 +114,24 @@ ${offset 110}${font Ubuntu:size=10:style=normal}${color2}${top_mem name 5}${alig
 
 
 # Network data (assumes wireless info). NET ring is mostly useless but looks pretty, main info is in the graphs
-${if_up eth0}
-${if_match "${addr eth0}" != "No Address"}\
+${if_up enp0s31f6}
+${if_match "${addr enp0s31f6}" != "No Address"}\
 ${offset 180}${font Ubuntu:size=10:style=bold}${color1}Wired
-${offset 180}${font Ubuntu:size=10:style=bold}${color1}IP: ${alignr}${font Ubuntu:size=10:style=normal}${color2}${addr eth0}
+${offset 180}${font Ubuntu:size=10:style=bold}${color1}IP: ${alignr}${font Ubuntu:size=10:style=normal}${color2}${addr enp0s31f6}
 ${offset 180}${font Ubuntu:size=10:style=bold}${color1}Public IP: ${alignr}${font Ubuntu:size=10:style=normal}${color2}${curl http://api.ipify.org 300}
-${offset 145}${upspeedgraph eth0 25,200 4B1B0C FF5C2B 1280KiB -l}
-${offset 145}${color1}${font Ubuntu:size=10:style=bold}Up: ${alignr}${font Ubuntu:size=10:style=normal}${color3}${upspeed eth0} / ${totalup eth0}
-${offset 145}${downspeedgraph eth0 25,200 324D23 77B753 1280KiB -l}
-${offset 145}${color1}${font Ubuntu:size=10:style=bold}Down: ${alignr}${font Ubuntu:size=10:style=normal}${color3}${downspeed eth0} / ${totaldown eth0}
+${offset 145}${upspeedgraph enp0s31f6 25,200 4B1B0C FF5C2B 1280KiB -l}
+${offset 145}${color1}${font Ubuntu:size=10:style=bold}Up: ${alignr}${font Ubuntu:size=10:style=normal}${color3}${upspeed enp0s31f6} / ${totalup enp0s31f6}
+${offset 145}${downspeedgraph enp0s31f6 25,200 324D23 77B753 1280KiB -l}
+${offset 145}${color1}${font Ubuntu:size=10:style=bold}Down: ${alignr}${font Ubuntu:size=10:style=normal}${color3}${downspeed enp0s31f6} / ${totaldown enp0s31f6}
 ${else}\
-${if_match "${addr wlan0}" != "No Address"}\
-${offset 180}${font Ubuntu:size=10:style=bold}${color1}Wifi: ${alignr}${font Ubuntu:size=10:style=normal}${color2}${wireless_essid} (${wireless_bitrate wlan0})
-${offset 180}${font Ubuntu:size=10:style=bold}${color1}IP: ${alignr}${font Ubuntu:size=10:style=normal}${color2}${addr wlan0}
+${if_match "${addr wlp3s0}" != "No Address"}\
+${offset 180}${font Ubuntu:size=10:style=bold}${color1}Wifi: ${alignr}${font Ubuntu:size=10:style=normal}${color2}${wireless_essid} (${wireless_bitrate wlp3s0})
+${offset 180}${font Ubuntu:size=10:style=bold}${color1}IP: ${alignr}${font Ubuntu:size=10:style=normal}${color2}${addr wlp3s0}
 ${offset 180}${font Ubuntu:size=10:style=bold}${color1}Public IP: ${alignr}${font Ubuntu:size=10:style=normal}${color2}${curl http://api.ipify.org 300}
-${offset 145}${upspeedgraph wlan0 25,200 4B1B0C FF5C2B 1280KiB -l}
-${offset 145}${color1}${font Ubuntu:size=10:style=bold}Up: ${alignr}${font Ubuntu:size=10:style=normal}${color3}${upspeed wlan0} / ${totalup wlan0}
-${offset 145}${downspeedgraph wlan0 25,200 324D23 77B753 1280KiB -l}
-${offset 145}${color1}${font Ubuntu:size=10:style=bold}Down: ${alignr}${font Ubuntu:size=10:style=normal}${color3}${downspeed wlan0} / ${totaldown wlan0}
+${offset 145}${upspeedgraph wlp3s0 25,200 4B1B0C FF5C2B 1280KiB -l}
+${offset 145}${color1}${font Ubuntu:size=10:style=bold}Up: ${alignr}${font Ubuntu:size=10:style=normal}${color3}${upspeed wlp3s0} / ${totalup wlp3s0}
+${offset 145}${downspeedgraph wlp3s0 25,200 324D23 77B753 1280KiB -l}
+${offset 145}${color1}${font Ubuntu:size=10:style=bold}Down: ${alignr}${font Ubuntu:size=10:style=normal}${color3}${downspeed wlp3s0} / ${totaldown wlp3s0}
 ${else}\
 
 ${offset 180}${font Ubuntu:size=10:style=bold}${color1}Disconnected
